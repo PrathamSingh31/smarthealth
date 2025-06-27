@@ -35,6 +35,8 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/doctors").hasAnyRole("PATIENT", "DOCTOR")
                         .requestMatchers("/api/appointments/patient").hasRole("PATIENT")
+                        .requestMatchers("/api/prescriptions/create").hasRole("DOCTOR")
+                        .requestMatchers("/api/prescriptions/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

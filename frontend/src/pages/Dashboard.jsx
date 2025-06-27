@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Dashboard() {
+const Dashboard = () => {
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div>
       <h2>Welcome to SmartHealth Dashboard</h2>
+      <Link to="/create-prescription">Add Prescription</Link>
     </div>
   );
-}
+};
 
 export default Dashboard;

@@ -25,10 +25,15 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         this.userRepository = userRepository;
     }
 
+    // ✅ Updated: now requires doctorId as well
     @Override
-    public Prescription createPrescription(Long appointmentId, String content) {
+    public Prescription createPrescription(Long appointmentId, Long doctorId, String content) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        if (!appointment.getDoctor().getId().equals(doctorId)) {
+            throw new RuntimeException("Unauthorized: Doctor does not own this appointment");
+        }
 
         Prescription prescription = new Prescription();
         prescription.setAppointment(appointment);
@@ -50,5 +55,4 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         return prescriptionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Prescription not found"));
     }
-
 }

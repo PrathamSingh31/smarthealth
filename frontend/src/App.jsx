@@ -6,7 +6,8 @@ import Dashboard from './pages/Dashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import BookAppointment from "./pages/BookAppointment";
 import Appointments from './pages/Appointments';
-
+import AddPrescription from "./pages/AddPrescription";
+import PrescriptionsList from "./pages/PrescriptionsList";
 function App() {
   return (
     <Routes>
@@ -20,8 +21,10 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/create-prescription" element={<AddPrescription />} />
       <Route path="/book" element={<BookAppointment />} />
       <Route path="/appointments" element={<Appointments />} />
+        <Route path="/prescriptions" element={<PrescriptionsList />} />
     </Routes>
   );
 }
